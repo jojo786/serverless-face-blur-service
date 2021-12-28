@@ -7,6 +7,18 @@ Parameters:
     Type: String
   DestinationBucketName:
     Type: String
+  StageEnv:
+    Type: String
+    AllowedValues:
+      - dev
+      - prod
+
+Mappings:
+  StageMappings:
+    dev:
+      stage: dev
+    prod:
+      stage: prod
 
 Resources:
   ## S3 buckets
@@ -113,6 +125,7 @@ Resources:
       Environment:
         Variables:
           DestinationBucketName: !Ref DestinationBucketName
+          stage: !FindInMap [StageMappings, !Ref StageEnv, stage]
       Events:
         MySQSEvent:
           Type: SQS
@@ -144,6 +157,7 @@ Resources:
       Environment:
         Variables:
           DestinationBucketName: !Ref DestinationBucketName
+          stage: !FindInMap [StageMappings, !Ref StageEnv, stage]
       Events:
         S3BlurredFacesEvent:
           Type: S3

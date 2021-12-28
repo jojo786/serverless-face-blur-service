@@ -6,10 +6,13 @@ import urllib.parse
 from aws_lambda_powertools.utilities import parameters
 import requests
 
+DestinationBucketName = os.environ['DestinationBucketName']
+
 s3 = boto3.client('s3')
 ssm_provider = parameters.SSMProvider()
 
-TelegramBotToken = ssm_provider.get("/telegramtasweerbot/telegram/"+"dev"+"/bot_token", decrypt=True)
+stage = os.environ['stage']
+TelegramBotToken = ssm_provider.get("/telegramtasweerbot/telegram/"+stage+"/bot_token", decrypt=True)
 
 bot = Bot(token=TelegramBotToken)
 dispatcher = Dispatcher(bot, None, use_context=True)
@@ -17,7 +20,7 @@ dispatcher = Dispatcher(bot, None, use_context=True)
 def image(image_filename):
     
     print ("Downloading blurred image ")
-    s3.download_file('telegramtasweerbot-faceblur-out', image_filename, '/tmp/image-blur.jpg')
+    s3.download_file('DestinationBucketName', image_filename, '/tmp/image-blur.jpg')
     
     data = image_filename[:-4].split('-')
     chat_id = '-' + data[1]
