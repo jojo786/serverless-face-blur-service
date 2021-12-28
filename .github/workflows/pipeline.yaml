@@ -191,7 +191,7 @@ jobs:
             --region ${TESTING_REGION} \
             --s3-bucket ${TESTING_ARTIFACTS_BUCKET} \
             --no-fail-on-empty-changeset \
-            --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE}
+            --role-arn ${TESTING_CLOUDFORMATION_EXECUTION_ROLE} \
             --parameter-overrides StageEnv=dev SourceBucketName=telegramtasweerbot-dev-faceblur-in DestinationBucketName=telegramtasweerbot-dev-faceblur-out
 
   integration-test:
@@ -237,5 +237,5 @@ jobs:
             --region ${PROD_REGION} \
             --s3-bucket ${PROD_ARTIFACTS_BUCKET} \
             --no-fail-on-empty-changeset \
-            --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE}
+            --role-arn ${PROD_CLOUDFORMATION_EXECUTION_ROLE} \
             --parameter-overrides StageEnv=prod SourceBucketName=telegramtasweerbot-prod-faceblur-in DestinationBucketName=telegramtasweerbot-prod-faceblur-out
