@@ -119,3 +119,41 @@ Resources:
           Properties:
             Queue: !GetAtt S3EventQueue.Arn
             BatchSize: 1
+
+  TelegramFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: sendBlurtoTelegram.lambda_handler
+      Runtime: python3.9
+      Timeout: 10
+      MemorySize: 1024
+      ReservedConcurrentExecutions: 1
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref DestinationBucketName
+        - Statement:
+          - Effect: "Allow"
+            Action:
+              - ssm:GetParameters
+              - ssm:GetParameter
+              - ssm:GetParametersByPath
+            Resource:
+              - '*'
+              - 'arn:aws:ssm:::parameter/telegramtasweerbot/*'
+      Environment:
+        Variables:
+          DestinationBucketName: !Ref DestinationBucketName
+      Events:
+        S3BlurredFacesEvent:
+          Type: S3
+          Properties:
+            Bucket:
+              Ref: DestinationBucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                - Name: suffix
+                  Value: '.jpg'
+      
