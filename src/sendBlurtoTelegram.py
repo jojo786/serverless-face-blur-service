@@ -20,7 +20,7 @@ dispatcher = Dispatcher(bot, None, use_context=True)
 def image(image_filename):
     
     print ("Downloading blurred image ")
-    s3.download_file('DestinationBucketName', image_filename, '/tmp/image-blur.jpg')
+    s3.download_file(DestinationBucketName, image_filename, '/tmp/image-blur.jpg')
     
     data = image_filename[:-4].split('-')
     chat_id = '-' + data[1]
