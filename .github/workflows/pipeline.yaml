@@ -121,7 +121,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::1234567890:role/arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
+          role-to-assume: arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
           role-duration-seconds: 900 # the ttl of the session, in seconds.
           aws-region: eu-west-1 # use your region here.
 
@@ -186,7 +186,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::1234567890:role/arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
+          role-to-assume: arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
           role-duration-seconds: 900 # the ttl of the session, in seconds.
           aws-region: eu-west-1 # use your region here.
 
@@ -239,7 +239,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::1234567890:role/arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
+          role-to-assume: arn:aws:iam::718974227478:role/GithubActionsOIDC-Role-FI89LLXFL7RA
           role-duration-seconds: 900 # the ttl of the session, in seconds.
           aws-region: eu-west-1 # use your region here.    
 
