@@ -41,4 +41,4 @@ async def main(event, context):
     bucket = event['Records'][0]['s3']['bucket']['name']
     image_filename = urllib.parse.unquote_plus(urllib.parse.unquote(event['Records'][0]['s3']['object']['key']))  #S3 event contains document name in URL encoding, needs to be decoded - https://github.com/aws-samples/amazon-textract-enhancer/issues/2
     print ("Image: " + image_filename)
-    image(image_filename)
+    asyncio.run(image(image_filename))
