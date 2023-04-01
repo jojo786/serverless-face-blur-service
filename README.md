@@ -1,6 +1,6 @@
 # Serverless face blurring service for images stored in Amazon S3
 
-The SAM template deploys a Lambda function, an SQS queue, and two S3 buckets. When JPG images are stored in the first (source) S3 bucket, this triggers the Lambda function. The function uses (Amazon Rekoginition)[https://aws.amazon.com/rekognition/] to find faces in the photos and then uses (GraphicsMagick)[http://www.graphicsmagick.org/] to blur the part of the image containing the faces. The result is stored in the second (destination) S3 bucket.
+The SAM template deploys a Lambda function, an SQS queue, and two S3 buckets. When JPG images are stored in the first (source) S3 bucket, this triggers the Lambda function. The function uses [Amazon Rekoginition](https://aws.amazon.com/rekognition/) to find faces in the photos and then uses [GraphicsMagick](http://www.graphicsmagick.org/) to blur the part of the image containing the faces. The result is stored in the second (destination) S3 bucket.
 
 Important: this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example.
 
@@ -13,6 +13,7 @@ To learn more about how this application works, see the article on the AWS Compu
 │   └── app.js                  <-- Main Lambda handler
 │   └── blurFaces.js            <-- Face blurring function
 │   └── detectFaces.js          <-- Face detection function
+│   └── sendBlurtoTelegram.py   <-- Posts the blurred image back to Telegram, based on the intergration with https://github.com/jojo786/TelegramTasweerBot 
 │   └── test.js                 <-- Local test wrapper
 │   └── testEvent.js            <-- Local test event
 │   └── package.json            <-- NodeJS dependencies and scripts
