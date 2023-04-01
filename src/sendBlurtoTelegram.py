@@ -34,9 +34,6 @@ async def image(image_filename):
 
 
 def lambda_handler(event, context):
-    return asyncio.get_event_loop().run_until_complete(main(event, context))
-
-async def main(event, context):
     print("Start processing S3 Event")
     bucket = event['Records'][0]['s3']['bucket']['name']
     image_filename = urllib.parse.unquote_plus(urllib.parse.unquote(event['Records'][0]['s3']['object']['key']))  #S3 event contains document name in URL encoding, needs to be decoded - https://github.com/aws-samples/amazon-textract-enhancer/issues/2
