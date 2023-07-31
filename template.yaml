@@ -138,7 +138,7 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: sendBlurtoTelegram.lambda_handler
-      Runtime: python3.10
+      Runtime: python3.11
       Architectures:
         - x86_64
       Timeout: 10
