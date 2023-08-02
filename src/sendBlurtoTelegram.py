@@ -20,7 +20,7 @@ async def image(image_filename):
     
     print ("Downloading blurred image ")
     s3.download_file(DestinationBucketName, image_filename, '/tmp/image-blur.jpg')
-    
+    #File e.g image_103897187_Yusuf_Mayet.jpg. Format is image_$chatid_FirstName_LastName.jpg
     data = image_filename[:-4].split('_')
     chat_id = data[1]
     chat_user_first_name = data[2]
