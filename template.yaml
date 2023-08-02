@@ -28,6 +28,11 @@ Resources:
       - S3EventQueuePolicy
     Properties:
       BucketName: !Ref SourceBucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteAfter1Day
+            Status: Enabled
+            ExpirationInDays: 1
       NotificationConfiguration:
         QueueConfigurations:
           - Event: "s3:ObjectCreated:*"
@@ -42,6 +47,11 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Ref DestinationBucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteAfter1Day
+            Status: Enabled
+            ExpirationInDays: 1
 
   # Enforce HTTPS only access to S3 bucket #
   BucketForImagePolicy:
@@ -140,7 +150,7 @@ Resources:
       Handler: sendBlurtoTelegram.lambda_handler
       Runtime: python3.11
       Architectures:
-        - arm64
+        - x86_64
       Timeout: 10
       MemorySize: 1024
       ReservedConcurrentExecutions: 1
