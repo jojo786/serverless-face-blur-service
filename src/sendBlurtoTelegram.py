@@ -22,7 +22,7 @@ async def image(image_filename):
     s3.download_file(DestinationBucketName, image_filename, '/tmp/image-blur.jpg')
     
     data = image_filename[:-4].split('_')
-    chat_id = '-' + data[1]
+    chat_id = data[1]
     chat_user_first_name = data[2]
     if (data[3] == "None"): # some users dont have a Last Name set in Telegram, so it displays as None. In which case, instead of showing None, just blank it out
         chat_user_last_name = ""

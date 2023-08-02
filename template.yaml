@@ -140,7 +140,7 @@ Resources:
       Handler: sendBlurtoTelegram.lambda_handler
       Runtime: python3.11
       Architectures:
-        - x86_64
+        - arm64
       Timeout: 10
       MemorySize: 1024
       ReservedConcurrentExecutions: 1
