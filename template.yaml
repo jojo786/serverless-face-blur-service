@@ -2,6 +2,15 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Automatically blur faces in photos stored in an S3 bucket.
 
+Globals:
+  Function:
+    Tags:
+      project: "Blur Faces"
+    LoggingConfig:
+      LogGroup: !Sub /aws/lambda/${AWS::StackName}
+      LogFormat: JSON
+
+
 Parameters:
   SourceBucketName:
     Type: String
@@ -148,7 +157,7 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: sendBlurtoTelegram.lambda_handler
-      Runtime: python3.11
+      Runtime: python3.12
       Architectures:
         - x86_64
       Timeout: 10
